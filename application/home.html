@@ -1,0 +1,132 @@
+ <!-- 
+  TWEB TE 2
+  Auteur : Mélanie Huck
+  Date : 21.01.2016
+-->
+
+<!DOCTYPE html>
+<html lang="en" ng-app="test">
+	<head>
+		<meta charset="utf-8">
+		<title>Anti-meteO</title>		
+	
+		<!-- Jquery library -->
+		<script src="assets/libs/jquery/jquery-2.1.4.min.js"></script>	
+		<script src="assets/libs/jquery/jquery.js"></script>
+		<!-- Latest compiled and minified bootstrap's CSS -->
+		<link rel="stylesheet" href="assets/libs/bootstrap/bootstrap.min.css">
+		<!-- Latest compiled and minified bootstrap's JavaScript -->
+		<script src="assets/libs/bootstrap/bootstrap.min.js"></script>
+		<!-- Visjs library -->
+		<script src="assets/libs/vis/vis.min.js"></script>
+		<link href="assets/libs/vis/vis.min.css" rel="stylesheet" type="text/css" />
+	
+		<!-- Custom stylesheet -->
+		<link rel="stylesheet" href="assets/css/main.css">	
+		
+		<!-- Angular -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js" ></script>		
+		<script src="app/app.js"></script>		
+		<script src="app/controllers/inputController.js"></script>		
+		<script src="app/controllers/pageController.js"></script>		
+    </head>
+    
+    <!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Lisez-moi !</h4>
+		  </div>
+		  <div class="modal-body">
+			<p>
+				Saisissez un point de votre choix (point n°1) en entrant une latitude et une longitude. L'application 
+				vous retourne les données météorologiques des stations les plus proches des 5 autres "coins" de la Terre 
+				opposés à ce point de référence.	
+			</p>
+			
+			<img src="assets/pictures/sphere.png" style="display: block; margin-left: auto; margin-right: auto;" width="250"  alt="points" />
+			<img src="assets/pictures/infos.png" style="display: block; margin-left: auto; margin-right: auto;" width="250"  alt="infos" />
+			
+			<p style="margin-top:20px;">
+			Cette application a été développée dans le cadre du cours de technologies Web, dispensé à la HEIG-VD 2015/2016.
+			</p >
+
+		  </div>
+		  <div class="modal-footer">
+			  <div>		  
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<!-- /modal -->
+
+	<body>			
+		<div id="wrapper">
+			<!-- Sidebar -->
+			<div id="sidebar-wrapper">				
+				<ul class="sidebar-nav">
+					<li class="sidebar-brand">
+						<a href="#">
+							Anti-meteO
+						</a>
+					</li>
+							
+					<li >
+						<a href="#" style="margin-bottom: 30px;" data-toggle="modal" data-target="#myModal">Lisez-moi !</a>	
+					</li>		
+					<form role="form" id="input-bottom" ng-controller="inputController as ctrl" ng-submit="getPoints()">
+						<div class="form-group">
+							<div>
+								<label for="point1" class="form-group-fin margin-bottom">Point de référence :</label>
+							</div>
+							<div>
+								<label class="form-group-fin">Latitude</label>
+								<input type="text" class="form-control margin-bottom" placeholder="[décimales]" ng-model="point0.lat"/>
+								<label class="form-group-fin">Longitude</label>
+								<input type="text" class="form-control margin-bottom" placeholder="[décimales]" ng-model="point0.lon"/>
+							</div>
+								<div>
+									<input type="submit" id="submit" value="GO !" type="button" style="padding-right:20px" class="btn btn-primary pull-right"/>
+								</div>					
+						
+						</div>
+					</form>
+					
+					<li>
+						<img src="assets/pictures/logo.png" id="imgLogo" width="140"  alt="Anti-meteO" />
+					</li>
+				</ul>
+			</div>
+			<!-- /#sidebar-wrapper -->
+			
+			<!-- Page Content -->
+			<div id="page-content-wrapper" ng-controller="pageController">
+				<a href="#menu-toggle" type="button" class="btn btn-primary btn pull-right" id="menu-toggle">Toggle Menu</a>
+				<div class="container-fluid">	
+					
+					<div class="row">
+												
+						<div >
+							<!---------- VISJS -------------------------->	
+						    <div id="visualization"></div> 					
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /#page-content-wrapper -->	
+		</div>
+	</body>	
+			<!-- Menu Toggle Script -->
+			<script>
+			$("#menu-toggle").click(function(e) {
+				e.preventDefault();
+				$("#wrapper").toggleClass("toggled");
+			});
+			</script>
+</html>
+
+
+

@@ -1,0 +1,16 @@
+{
+	"rooms" : [
+	{
+		"salle" : "A38",
+		"capacite" : "50"
+	},
+		{
+		"salle" : "B22",
+		"capacite" : "40"
+	},
+		{
+		"salle" : "C18",
+		"capacite" : "200"
+	}
+	]
+}
